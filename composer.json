@@ -1,0 +1,63 @@
+{
+  "name": "gopisathya/hackathon",
+  "description": "Project template for Drupal 8 sites built with the hackathon distribution.",
+  "type": "project",
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require-dev": {
+    "drush/drush": "^9.0"
+  },
+  "require": {
+    "drupal-composer/drupal-scaffold": "^2.0.0",
+    "cweagans/composer-patches": "^1.6.0",
+    "drupal/core": "~8.6.0",
+    "composer/installers": "~1.0"
+  },
+  "repositories": {
+    "drupal": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    },
+    "assets": {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  },
+  "config": {
+    "process-timeout": 0
+  },
+  "scripts": {
+    "post-install-cmd": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+    "post-update-cmd": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
+  },
+  "extra": {
+    "installer-types": [
+      "bower-asset",
+      "npm-asset"
+    ],
+    "installer-paths": {
+      "docroot/core": [
+        "drupal/core"
+      ],
+      "docroot/libraries/{$name}": [
+        "type:drupal-library",
+        "type:bower-asset",
+        "type:npm-asset"
+      ],
+      "docroot/modules/contrib/{$name}": [
+        "type:drupal-module"
+      ],
+      "docroot/profiles/contrib/{$name}": [
+        "type:drupal-profile"
+      ],
+      "docroot/themes/contrib/{$name}": [
+        "type:drupal-theme"
+      ],
+      "drush/contrib/{$name}": [
+        "type:drupal-drush"
+      ]
+    },
+    "enable-patching": true
+  }
+}
